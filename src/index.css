@@ -1,0 +1,227 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 220 14% 97%;
+    --foreground: 220 14% 10%;
+    --card: 0 0% 100%;
+    --card-foreground: 220 14% 10%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 14% 10%;
+    --primary: 40 55% 59%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 220 14% 96%;
+    --secondary-foreground: 220 14% 10%;
+    --muted: 220 14% 94%;
+    --muted-foreground: 220 9% 46%;
+    --accent: 40 55% 59%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 220 13% 88%;
+    --input: 220 13% 88%;
+    --ring: 40 55% 59%;
+    --radius: 1.75rem;
+    
+    --gold: #D4A05A;
+    --gold-light: #E8C88A;
+    --gold-dark: #B8853F;
+    --cloud: #F6F7F9;
+    --navy: #0B0F17;
+    --text-primary: #111827;
+    --text-secondary: #6B7280;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    @apply bg-[#F6F7F9] text-foreground antialiased;
+    font-family: 'Inter', sans-serif;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Montserrat', sans-serif;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+  }
+}
+
+@layer components {
+  .font-mono {
+    font-family: 'IBM Plex Mono', monospace;
+  }
+  
+  .glass-card {
+    @apply bg-white/80 backdrop-blur-xl rounded-[28px] border border-white/40 shadow-[0_28px_80px_rgba(0,0,0,0.10)];
+  }
+  
+  .glass-card-dark {
+    @apply bg-white/10 backdrop-blur-xl rounded-[28px] border border-white/20 shadow-[0_28px_80px_rgba(0,0,0,0.20)];
+  }
+  
+  .btn-primary {
+    @apply bg-[#D4A05A] text-white px-8 py-4 rounded-full font-semibold text-sm tracking-wide
+           transition-all duration-300 hover:bg-[#B8853F] hover:-translate-y-0.5
+           focus:outline-none focus:ring-2 focus:ring-[#D4A05A]/30;
+  }
+  
+  .btn-secondary {
+    @apply bg-transparent text-[#111827] px-8 py-4 rounded-full font-semibold text-sm tracking-wide
+           border-2 border-[#111827]/20 transition-all duration-300
+           hover:border-[#D4A05A] hover:text-[#D4A05A] hover:-translate-y-0.5;
+  }
+  
+  .btn-whatsapp {
+    @apply bg-[#25D366] text-white px-8 py-4 rounded-full font-semibold text-sm tracking-wide
+           transition-all duration-300 hover:bg-[#128C7E] hover:-translate-y-0.5
+           flex items-center gap-2 justify-center;
+  }
+  
+  .section-label {
+    @apply font-mono text-xs uppercase tracking-[0.08em] text-[#6B7280];
+  }
+  
+  .text-gradient {
+    @apply bg-gradient-to-r from-[#D4A05A] to-[#E8C88A] bg-clip-text text-transparent;
+  }
+  
+  .grain-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.04;
+    mix-blend-mode: multiply;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  }
+  
+  .vignette {
+    background: radial-gradient(circle at 50% 45%, rgba(255,255,255,0.85), rgba(246,247,249,1) 65%);
+  }
+  
+  .gold-underline {
+    @apply relative inline-block;
+  }
+  
+  .gold-underline::after {
+    content: '';
+    @apply absolute bottom-0 left-0 w-[72px] h-[2px] bg-[#D4A05A];
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  
+  .animation-delay-100 {
+    animation-delay: 100ms;
+  }
+  
+  .animation-delay-200 {
+    animation-delay: 200ms;
+  }
+  
+  .animation-delay-300 {
+    animation-delay: 300ms;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #F6F7F9;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #D4A05A;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #B8853F;
+}
+
+/* Animation keyframes */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(60vw) rotate(3deg);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0) rotate(0);
+  }
+}
+
+@keyframes slideOutLeft {
+  from {
+    opacity: 1;
+    transform: translateX(0) rotate(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(-58vw) rotate(-2deg);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
+.animate-scale-in {
+  animation: scaleIn 0.7s ease-out forwards;
+}
