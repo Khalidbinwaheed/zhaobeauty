@@ -97,8 +97,8 @@ export function Hero() {
     >
       {/* Background decoration */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-1/4 -left-32 w-64 h-64 bg-gold/10 rounded-full blur-3xl" />
-        <div className="absolute bottom-1/4 -right-32 w-96 h-96 bg-gold/5 rounded-full blur-3xl" />
+        <div className="absolute top-1/4 -left-32 w-64 h-64 bg-cyan/10 rounded-full blur-3xl" />
+        <div className="absolute bottom-1/4 -right-32 w-96 h-96 bg-cyan/5 rounded-full blur-3xl" />
       </div>
 
       {/* Main Glass Card */}
@@ -114,7 +114,7 @@ export function Hero() {
               ref={labelRef}
               className="section-label mb-4 opacity-0 flex items-center gap-2"
             >
-              <Sparkles className="w-4 h-4 text-gold" />
+              <Sparkles className="w-4 h-4 text-cyan" />
               AESTHETIC DEVICES
             </span>
 
@@ -189,7 +189,7 @@ export function Hero() {
           </span>
         </div>
         <div className="hidden sm:flex items-center gap-2">
-          <div className="w-2 h-2 bg-gold rounded-full" />
+          <div className="w-2 h-2 bg-cyan rounded-full" />
           <span className="text-sm text-text-secondary">Trusted by Clinics</span>
         </div>
         <div className="flex items-center gap-2">

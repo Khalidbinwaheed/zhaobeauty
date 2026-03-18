@@ -114,15 +114,15 @@ export function Categories() {
                 <div className="p-6">
                   <div className="flex items-start justify-between">
                     <div>
-                      <h3 className="font-heading font-semibold text-xl text-text-primary mb-2 group-hover:text-gold transition-colors duration-300">
+                      <h3 className="font-heading font-semibold text-xl text-text-primary mb-2 group-hover:text-cyan transition-colors duration-300">
                         {category.name}
                       </h3>
                       <p className="text-text-secondary text-sm leading-relaxed">
                         {category.description}
                       </p>
                     </div>
-                    <div className="w-10 h-10 rounded-full bg-gold/10 flex items-center justify-center flex-shrink-0 ml-4 group-hover:bg-gold group-hover:scale-110 transition-all duration-300">
-                      <ArrowUpRight className="w-5 h-5 text-gold group-hover:text-white transition-colors duration-300" />
+                    <div className="w-10 h-10 rounded-full bg-cyan/10 flex items-center justify-center flex-shrink-0 ml-4 group-hover:bg-cyan group-hover:scale-110 transition-all duration-300">
+                      <ArrowUpRight className="w-5 h-5 text-cyan group-hover:text-white transition-colors duration-300" />
                     </div>
                   </div>
                 </div>

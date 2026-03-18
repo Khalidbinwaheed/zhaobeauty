@@ -87,14 +87,14 @@ export function WhyChooseUs() {
     >
       {/* Background decoration */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gold/5 rounded-full blur-3xl" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-cyan/5 rounded-full blur-3xl" />
       </div>
 
       <div className="w-full px-4 sm:px-6 lg:px-12 xl:px-20 relative">
         {/* Section Header */}
         <div ref={titleRef} className="text-center mb-16 opacity-0">
           <span className="section-label mb-4 block flex items-center justify-center gap-2">
-            <Sparkles className="w-4 h-4 text-gold" />
+            <Sparkles className="w-4 h-4 text-cyan" />
             WHY CHOOSE US
           </span>
           <h2 className="font-heading font-bold text-3xl sm:text-4xl lg:text-5xl text-text-primary mb-4">
@@ -118,12 +118,12 @@ export function WhyChooseUs() {
               className="group bg-white rounded-3xl p-8 shadow-card transition-all duration-500 hover:shadow-glass-lg hover:-translate-y-2"
             >
               {/* Icon */}
-              <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-gold/20 to-gold/5 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:from-gold group-hover:to-gold-dark transition-all duration-500">
-                <feature.icon className="w-8 h-8 text-gold group-hover:text-white transition-colors duration-500" />
+              <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-cyan/20 to-cyan/5 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:from-cyan group-hover:to-cyan-dark transition-all duration-500">
+                <feature.icon className="w-8 h-8 text-cyan group-hover:text-white transition-colors duration-500" />
               </div>
 
               {/* Content */}
-              <h3 className="font-heading font-semibold text-xl text-text-primary mb-3 group-hover:text-gold transition-colors duration-300">
+              <h3 className="font-heading font-semibold text-xl text-text-primary mb-3 group-hover:text-cyan transition-colors duration-300">
                 {feature.title}
               </h3>
               <p className="text-text-secondary text-sm leading-relaxed">
@@ -144,7 +144,7 @@ export function WhyChooseUs() {
               e.preventDefault();
               document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' });
             }}
-            className="inline-flex items-center gap-2 px-8 py-4 bg-gold text-white rounded-full font-medium hover:bg-gold-dark transition-all duration-300 hover:-translate-y-0.5"
+            className="inline-flex items-center gap-2 px-8 py-4 bg-cyan text-white rounded-full font-medium hover:bg-cyan-dark transition-all duration-300 hover:-translate-y-0.5"
           >
             Get in Touch
             <Sparkles className="w-4 h-4" />

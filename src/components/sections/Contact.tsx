@@ -99,7 +99,7 @@ export function Contact() {
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-20">
           {/* Left Content */}
           <div ref={contentRef} className="opacity-0">
-            <span className="font-mono text-xs uppercase tracking-[0.08em] text-gold mb-4 block">
+            <span className="font-mono text-xs uppercase tracking-[0.08em] text-cyan mb-4 block">
               GET IN TOUCH
             </span>
             <h2 className="font-heading font-bold text-3xl sm:text-4xl lg:text-5xl text-white mb-6">
@@ -115,8 +115,8 @@ export function Contact() {
             {/* Contact Info */}
             <div className="space-y-6 mb-10">
               <div className="flex items-start gap-4">
-                <div className="w-12 h-12 rounded-xl bg-gold/10 flex items-center justify-center flex-shrink-0">
-                  <Phone className="w-5 h-5 text-gold" />
+                <div className="w-12 h-12 rounded-xl bg-cyan/10 flex items-center justify-center flex-shrink-0">
+                  <Phone className="w-5 h-5 text-cyan" />
                 </div>
                 <div>
                   <h4 className="font-semibold text-white mb-1">Phone</h4>
@@ -126,8 +126,8 @@ export function Contact() {
               </div>
 
               <div className="flex items-start gap-4">
-                <div className="w-12 h-12 rounded-xl bg-gold/10 flex items-center justify-center flex-shrink-0">
-                  <Mail className="w-5 h-5 text-gold" />
+                <div className="w-12 h-12 rounded-xl bg-cyan/10 flex items-center justify-center flex-shrink-0">
+                  <Mail className="w-5 h-5 text-cyan" />
                 </div>
                 <div>
                   <h4 className="font-semibold text-white mb-1">Email</h4>
@@ -137,8 +137,8 @@ export function Contact() {
               </div>
 
               <div className="flex items-start gap-4">
-                <div className="w-12 h-12 rounded-xl bg-gold/10 flex items-center justify-center flex-shrink-0">
-                  <MapPin className="w-5 h-5 text-gold" />
+                <div className="w-12 h-12 rounded-xl bg-cyan/10 flex items-center justify-center flex-shrink-0">
+                  <MapPin className="w-5 h-5 text-cyan" />
                 </div>
                 <div>
                   <h4 className="font-semibold text-white mb-1">Location</h4>
@@ -178,7 +178,7 @@ export function Contact() {
                   onChange={(e) =>
                     setFormData({ ...formData, name: e.target.value })
                   }
-                  className="bg-white/5 border-white/10 text-white placeholder:text-gray-500 focus:border-gold focus:ring-gold/20 rounded-xl h-12"
+                  className="bg-white/5 border-white/10 text-white placeholder:text-gray-500 focus:border-cyan focus:ring-cyan/20 rounded-xl h-12"
                   required
                 />
               </div>
@@ -193,7 +193,7 @@ export function Contact() {
                     onChange={(e) =>
                       setFormData({ ...formData, email: e.target.value })
                     }
-                    className="bg-white/5 border-white/10 text-white placeholder:text-gray-500 focus:border-gold focus:ring-gold/20 rounded-xl h-12"
+                    className="bg-white/5 border-white/10 text-white placeholder:text-gray-500 focus:border-cyan focus:ring-cyan/20 rounded-xl h-12"
                     required
                   />
                 </div>
@@ -206,7 +206,7 @@ export function Contact() {
                     onChange={(e) =>
                       setFormData({ ...formData, phone: e.target.value })
                     }
-                    className="bg-white/5 border-white/10 text-white placeholder:text-gray-500 focus:border-gold focus:ring-gold/20 rounded-xl h-12"
+                    className="bg-white/5 border-white/10 text-white placeholder:text-gray-500 focus:border-cyan focus:ring-cyan/20 rounded-xl h-12"
                   />
                 </div>
               </div>
@@ -219,14 +219,14 @@ export function Contact() {
                   onChange={(e) =>
                     setFormData({ ...formData, message: e.target.value })
                   }
-                  className="bg-white/5 border-white/10 text-white placeholder:text-gray-500 focus:border-gold focus:ring-gold/20 rounded-xl min-h-[120px] resize-none"
+                  className="bg-white/5 border-white/10 text-white placeholder:text-gray-500 focus:border-cyan focus:ring-cyan/20 rounded-xl min-h-[120px] resize-none"
                   required
                 />
               </div>
 
               <Button
                 type="submit"
-                className="w-full py-4 bg-gold hover:bg-gold-dark text-white rounded-xl font-medium flex items-center justify-center gap-2 transition-all duration-300"
+                className="w-full py-4 bg-cyan hover:bg-cyan-dark text-white rounded-xl font-medium flex items-center justify-center gap-2 transition-all duration-300"
               >
                 <Send className="w-4 h-4" />
                 Send Message

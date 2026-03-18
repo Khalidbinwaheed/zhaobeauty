@@ -131,8 +131,8 @@ export function BestSellers() {
             onClick={() => setSelectedCategory('all')}
             className={`px-4 sm:px-6 py-2.5 rounded-full text-sm font-medium transition-all duration-300 ${
               selectedCategory === 'all'
-                ? 'bg-gold text-white shadow-lg shadow-gold/25'
-                : 'bg-white text-text-secondary hover:bg-gold/10 hover:text-gold'
+                ? 'bg-cyan text-white shadow-lg shadow-cyan/25'
+                : 'bg-white text-text-secondary hover:bg-cyan/10 hover:text-cyan'
             }`}
           >
             All
@@ -143,8 +143,8 @@ export function BestSellers() {
               onClick={() => setSelectedCategory(cat.id)}
               className={`px-4 sm:px-6 py-2.5 rounded-full text-sm font-medium transition-all duration-300 ${
                 selectedCategory === cat.id
-                  ? 'bg-gold text-white shadow-lg shadow-gold/25'
-                  : 'bg-white text-text-secondary hover:bg-gold/10 hover:text-gold'
+                  ? 'bg-cyan text-white shadow-lg shadow-cyan/25'
+                  : 'bg-white text-text-secondary hover:bg-cyan/10 hover:text-cyan'
               }`}
             >
               {cat.name.split(' ')[0]}
@@ -172,7 +172,7 @@ export function BestSellers() {
                 
                 {/* Badge */}
                 {product.badge && (
-                  <div className="absolute top-3 left-3 px-3 py-1 bg-gold text-white text-xs font-medium rounded-full">
+                  <div className="absolute top-3 left-3 px-3 py-1 bg-cyan text-white text-xs font-medium rounded-full">
                     {product.badge}
                   </div>
                 )}
@@ -198,7 +198,7 @@ export function BestSellers() {
                       key={i}
                       className={`w-4 h-4 ${
                         i < Math.floor(product.rating)
-                          ? 'text-gold fill-gold'
+                          ? 'text-cyan fill-cyan'
                           : 'text-gray-300'
                       }`}
                     />
@@ -211,14 +211,14 @@ export function BestSellers() {
                 {/* Name */}
                 <h3
                   onClick={() => openProductDialog(product)}
-                  className="font-heading font-semibold text-lg text-text-primary mb-2 cursor-pointer hover:text-gold transition-colors duration-300 line-clamp-1"
+                  className="font-heading font-semibold text-lg text-text-primary mb-2 cursor-pointer hover:text-cyan transition-colors duration-300 line-clamp-1"
                 >
                   {product.name}
                 </h3>
 
                 {/* Price */}
                 <div className="flex items-center gap-2 mb-4">
-                  <span className="font-heading font-bold text-xl text-gold">
+                  <span className="font-heading font-bold text-xl text-cyan">
                     {formatPrice(product.price)}
                   </span>
                   {product.originalPrice && (
@@ -256,7 +256,7 @@ export function BestSellers() {
                     className="w-full h-full object-cover"
                   />
                   {selectedProduct.badge && (
-                    <div className="absolute top-4 left-4 px-3 py-1 bg-gold text-white text-xs font-medium rounded-full">
+                    <div className="absolute top-4 left-4 px-3 py-1 bg-cyan text-white text-xs font-medium rounded-full">
                       {selectedProduct.badge}
                     </div>
                   )}
@@ -277,7 +277,7 @@ export function BestSellers() {
                         key={i}
                         className={`w-4 h-4 ${
                           i < Math.floor(selectedProduct.rating)
-                            ? 'text-gold fill-gold'
+                            ? 'text-cyan fill-cyan'
                             : 'text-gray-300'
                         }`}
                       />
@@ -289,7 +289,7 @@ export function BestSellers() {
 
                   {/* Price */}
                   <div className="flex items-center gap-3 mb-4">
-                    <span className="font-heading font-bold text-3xl text-gold">
+                    <span className="font-heading font-bold text-3xl text-cyan">
                       {formatPrice(selectedProduct.price)}
                     </span>
                     {selectedProduct.originalPrice && (
@@ -315,7 +315,7 @@ export function BestSellers() {
                           key={i}
                           className="flex items-start gap-2 text-sm text-text-secondary"
                         >
-                          <Check className="w-4 h-4 text-gold flex-shrink-0 mt-0.5" />
+                          <Check className="w-4 h-4 text-cyan flex-shrink-0 mt-0.5" />
                           {feature}
                         </li>
                       ))}
@@ -333,7 +333,7 @@ export function BestSellers() {
                           key={i}
                           className="flex items-start gap-2 text-sm text-text-secondary"
                         >
-                          <span className="w-1.5 h-1.5 bg-gold rounded-full flex-shrink-0 mt-1.5" />
+                          <span className="w-1.5 h-1.5 bg-cyan rounded-full flex-shrink-0 mt-1.5" />
                           {item}
                         </li>
                       ))}

@@ -48,7 +48,7 @@ export function Footer() {
           {/* Brand Column */}
           <div className="lg:col-span-2">
             <div className="flex items-center gap-3 mb-6">
-              <div className="w-12 h-12 rounded-full bg-gradient-to-br from-gold to-gold-light flex items-center justify-center">
+              <div className="w-12 h-12 rounded-full bg-gradient-to-br from-cyan to-cyan-light flex items-center justify-center">
                 <span className="text-white font-heading font-bold text-xl">Z</span>
               </div>
               <span className="font-heading font-bold text-xl text-white">
@@ -63,15 +63,15 @@ export function Footer() {
             {/* Contact Info */}
             <div className="space-y-3">
               <div className="flex items-center gap-3 text-gray-400">
-                <Phone className="w-4 h-4 text-gold" />
+                <Phone className="w-4 h-4 text-cyan" />
                 <span className="text-sm">+92-300-1234567</span>
               </div>
               <div className="flex items-center gap-3 text-gray-400">
-                <Mail className="w-4 h-4 text-gold" />
+                <Mail className="w-4 h-4 text-cyan" />
                 <span className="text-sm">hello@zhaobeautytech.com</span>
               </div>
               <div className="flex items-center gap-3 text-gray-400">
-                <MapPin className="w-4 h-4 text-gold" />
+                <MapPin className="w-4 h-4 text-cyan" />
                 <span className="text-sm">Lahore, Pakistan</span>
               </div>
             </div>
@@ -91,7 +91,7 @@ export function Footer() {
                       e.preventDefault();
                       scrollToSection(link.href);
                     }}
-                    className="text-gray-400 hover:text-gold transition-colors duration-300 text-sm"
+                    className="text-gray-400 hover:text-cyan transition-colors duration-300 text-sm"
                   >
                     {link.label}
                   </a>
@@ -116,7 +116,7 @@ export function Footer() {
                         scrollToSection(link.href);
                       }
                     }}
-                    className="text-gray-400 hover:text-gold transition-colors duration-300 text-sm"
+                    className="text-gray-400 hover:text-cyan transition-colors duration-300 text-sm"
                   >
                     {link.label}
                   </a>
@@ -135,7 +135,7 @@ export function Footer() {
                 <li key={link.label}>
                   <a
                     href={link.href}
-                    className="text-gray-400 hover:text-gold transition-colors duration-300 text-sm"
+                    className="text-gray-400 hover:text-cyan transition-colors duration-300 text-sm"
                   >
                     {link.label}
                   </a>
@@ -161,7 +161,7 @@ export function Footer() {
                   key={social.label}
                   href={social.href}
                   aria-label={social.label}
-                  className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-gray-400 hover:bg-gold hover:text-white transition-all duration-300"
+                  className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-gray-400 hover:bg-cyan hover:text-white transition-all duration-300"
                 >
                   <social.icon className="w-5 h-5" />
                 </a>

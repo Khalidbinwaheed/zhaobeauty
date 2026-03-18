@@ -56,9 +56,7 @@ export function Header() {
             }}
             className="flex items-center gap-2"
           >
-            <div className="w-10 h-10 rounded-full bg-gradient-to-br from-gold to-gold-light flex items-center justify-center">
-              <span className="text-white font-heading font-bold text-lg">Z</span>
-            </div>
+            <img src="/images/logo.png" alt="Zhao Beauty Tech Logo" className="h-10 w-auto object-contain" />
             <div className="hidden sm:block">
               <span className="font-heading font-bold text-lg text-text-primary tracking-tight">
                 Zhao Beauty Tech
@@ -76,10 +74,10 @@ export function Header() {
                   e.preventDefault();
                   scrollToSection(item.href);
                 }}
-                className="text-sm font-medium text-text-secondary hover:text-gold transition-colors duration-300 relative group"
+                className="text-sm font-medium text-text-secondary hover:text-cyan transition-colors duration-300 relative group"
               >
                 {item.label}
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gold transition-all duration-300 group-hover:w-full" />
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-cyan transition-all duration-300 group-hover:w-full" />
               </a>
             ))}
           </nav>
@@ -91,7 +89,7 @@ export function Header() {
               href="https://wa.me/923001234567?text=Hi,%20I%20want%20to%20request%20a%20quote"
               target="_blank"
               rel="noopener noreferrer"
-              className="hidden md:flex items-center gap-2 px-5 py-2.5 bg-gold text-white rounded-full text-sm font-medium hover:bg-gold-dark transition-all duration-300 hover:-translate-y-0.5"
+              className="hidden md:flex items-center gap-2 px-5 py-2.5 bg-cyan text-white rounded-full text-sm font-medium hover:bg-cyan-dark transition-all duration-300 hover:-translate-y-0.5"
             >
               <Phone className="w-4 h-4" />
               <span>Request Quote</span>
@@ -103,7 +101,7 @@ export function Header() {
                 <Button
                   variant="ghost"
                   size="icon"
-                  className="rounded-full hover:bg-gold/10"
+                  className="rounded-full hover:bg-cyan/10"
                 >
                   <Menu className="w-6 h-6 text-text-primary" />
                 </Button>
@@ -122,7 +120,7 @@ export function Header() {
                       <Button
                         variant="ghost"
                         size="icon"
-                        className="rounded-full hover:bg-gold/10"
+                        className="rounded-full hover:bg-cyan/10"
                       >
                         <X className="w-5 h-5" />
                       </Button>
@@ -139,7 +137,7 @@ export function Header() {
                           e.preventDefault();
                           scrollToSection(item.href);
                         }}
-                        className="text-lg font-medium text-text-primary hover:text-gold transition-colors duration-300 py-3 px-4 rounded-xl hover:bg-gold/5"
+                        className="text-lg font-medium text-text-primary hover:text-cyan transition-colors duration-300 py-3 px-4 rounded-xl hover:bg-cyan/5"
                         style={{ animationDelay: `${index * 50}ms` }}
                       >
                         {item.label}

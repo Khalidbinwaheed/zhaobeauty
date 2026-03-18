@@ -67,7 +67,7 @@ export function About() {
       className="relative w-full py-20 lg:py-32 vignette overflow-hidden"
     >
       {/* Background decoration */}
-      <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-gold/5 to-transparent pointer-events-none" />
+      <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-cyan/5 to-transparent pointer-events-none" />
 
       <div className="w-full px-4 sm:px-6 lg:px-12 xl:px-20">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
@@ -107,7 +107,7 @@ export function About() {
                 </span>
               </div>
               <div className="flex items-center gap-2 px-4 py-2 bg-white rounded-full shadow-sm">
-                <div className="w-2 h-2 bg-gold rounded-full" />
+                <div className="w-2 h-2 bg-cyan rounded-full" />
                 <span className="text-sm text-text-secondary">
                   Warranty Included
                 </span>
@@ -152,10 +152,10 @@ export function About() {
               key={index}
               className="bg-white rounded-2xl p-6 lg:p-8 text-center shadow-card hover:shadow-glass transition-all duration-300 hover:-translate-y-1"
             >
-              <div className="w-12 h-12 mx-auto mb-4 rounded-full bg-gold/10 flex items-center justify-center">
-                <stat.icon className="w-6 h-6 text-gold" />
+              <div className="w-12 h-12 mx-auto mb-4 rounded-full bg-cyan/10 flex items-center justify-center">
+                <stat.icon className="w-6 h-6 text-cyan" />
               </div>
-              <div className="font-heading font-bold text-3xl lg:text-4xl text-gold mb-1">
+              <div className="font-heading font-bold text-3xl lg:text-4xl text-cyan mb-1">
                 {stat.value}
               </div>
               <div className="text-sm text-text-secondary">{stat.label}</div>
