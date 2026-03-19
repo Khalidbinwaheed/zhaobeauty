@@ -104,15 +104,15 @@ export function Hero() {
       {/* Main Glass Card */}
       <div
         ref={cardRef}
-        className="relative w-[92vw] max-w-[1100px] min-h-[520px] h-[62vh] max-h-[700px] glass-card mx-auto opacity-0"
+        className="relative w-[95vw] lg:w-[92vw] max-w-[1100px] min-h-[auto] lg:min-h-[520px] h-auto lg:h-[62vh] lg:max-h-[700px] glass-card mx-auto opacity-0 my-8 lg:my-0"
       >
         <div className="flex flex-col lg:flex-row h-full">
           {/* Left Content */}
-          <div className="flex-1 flex flex-col justify-center p-8 sm:p-10 lg:p-12 xl:p-16 order-2 lg:order-1">
+          <div className="flex-1 flex flex-col justify-center p-6 sm:p-10 lg:p-12 xl:p-16 order-2 lg:order-1 pt-4 lg:pt-16 mt-0 pb-8 lg:pb-16 text-center lg:text-left items-center lg:items-start">
             {/* Label */}
             <span
               ref={labelRef}
-              className="section-label mb-4 opacity-0 flex items-center gap-2"
+              className="section-label mb-3 lg:mb-4 opacity-0 flex items-center gap-2"
             >
               <Sparkles className="w-4 h-4 text-cyan" />
               AESTHETIC DEVICES
@@ -127,7 +127,7 @@ export function Hero() {
             </h1>
             <span
               ref={subtitleRef}
-              className="font-heading font-bold text-3xl sm:text-4xl lg:text-5xl text-gradient mb-6 opacity-0"
+              className="font-heading font-bold text-3xl sm:text-4xl lg:text-5xl text-gradient mb-4 lg:mb-6 opacity-0"
             >
               Aesthetic Technology
             </span>
@@ -135,25 +135,25 @@ export function Hero() {
             {/* Body */}
             <p
               ref={bodyRef}
-              className="text-text-secondary text-base lg:text-lg leading-relaxed max-w-md mb-8 opacity-0"
+              className="text-text-secondary text-sm lg:text-lg leading-relaxed max-w-md mb-6 lg:mb-8 opacity-0"
             >
               High-performance devices for microneedling, laser, HIFU, and skin
-              rejuvenation—trusted by clinics and beauty professionals across
+              rejuvenation trusted by clinics and beauty professionals across
               Pakistan.
             </p>
 
             {/* CTAs */}
-            <div ref={buttonsRef} className="flex flex-wrap gap-4">
+            <div ref={buttonsRef} className="flex flex-wrap gap-3 lg:gap-4 justify-center lg:justify-start">
               <button
                 onClick={scrollToProducts}
-                className="btn-primary flex items-center gap-2 opacity-0"
+                className="btn-primary flex items-center gap-2 opacity-0 text-sm lg:text-base px-5 lg:px-6"
               >
                 Explore Products
                 <ArrowRight className="w-4 h-4" />
               </button>
               <button
                 onClick={scrollToContact}
-                className="btn-secondary opacity-0"
+                className="btn-secondary opacity-0 text-sm lg:text-base px-5 lg:px-6"
               >
                 Request a Quote
               </button>
@@ -163,14 +163,14 @@ export function Hero() {
           {/* Right Image */}
           <div
             ref={imageRef}
-            className="lg:w-[48%] h-64 lg:h-full relative order-1 lg:order-2 opacity-0"
+            className="w-full lg:w-[48%] h-56 sm:h-80 lg:h-full relative order-1 lg:order-2 opacity-0 shrink-0"
           >
-            <div className="absolute inset-0 p-4 lg:p-6">
-              <div className="relative w-full h-full rounded-2xl lg:rounded-3xl overflow-hidden">
+            <div className="absolute inset-0 p-3 lg:p-6 pb-0 lg:pb-6">
+              <div className="relative w-full h-full rounded-2xl lg:rounded-3xl overflow-hidden bg-cyan/5">
                 <img
-                  src="/images/hero-device.jpg"
+                  src={`${import.meta.env.BASE_URL}images/hero-device.png`}
                   alt="Professional Aesthetic Device"
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover object-center"
                 />
                 {/* Overlay gradient */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent" />
@@ -181,20 +181,22 @@ export function Hero() {
       </div>
 
       {/* Trust badges */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex items-center gap-6 sm:gap-10 px-6 py-3 bg-white/60 backdrop-blur-sm rounded-full">
-        <div className="flex items-center gap-2">
-          <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
-          <span className="text-xs sm:text-sm text-text-secondary whitespace-nowrap">
+      <div className="absolute bottom-4 sm:bottom-8 left-1/2 -translate-x-1/2 flex items-center justify-center gap-3 sm:gap-10 px-4 sm:px-6 py-2.5 sm:py-3 bg-white/70 backdrop-blur-md rounded-full w-[94vw] sm:w-auto max-w-[400px] sm:max-w-none shadow-sm">
+        <div className="flex items-center gap-1.5 sm:gap-2">
+          <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-green-500 rounded-full animate-pulse shrink-0" />
+          <span className="text-[10px] sm:text-sm text-text-secondary font-medium whitespace-nowrap">
             100% Original
           </span>
         </div>
-        <div className="hidden sm:flex items-center gap-2">
-          <div className="w-2 h-2 bg-cyan rounded-full" />
-          <span className="text-sm text-text-secondary">Trusted by Clinics</span>
+        <div className="flex items-center gap-1.5 sm:gap-2">
+          <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-cyan rounded-full shrink-0" />
+          <span className="text-[10px] sm:text-sm text-text-secondary font-medium whitespace-nowrap">
+            Trusted by Clinics
+          </span>
         </div>
-        <div className="flex items-center gap-2">
-          <div className="w-2 h-2 bg-blue-500 rounded-full" />
-          <span className="text-xs sm:text-sm text-text-secondary whitespace-nowrap">
+        <div className="flex items-center gap-1.5 sm:gap-2">
+          <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-blue-500 rounded-full shrink-0" />
+          <span className="text-[10px] sm:text-sm text-text-secondary font-medium whitespace-nowrap">
             Fast Delivery
           </span>
         </div>

@@ -56,7 +56,7 @@ export function Header() {
             }}
             className="flex items-center gap-2"
           >
-            <img src="/images/logo.png" alt="Zhao Beauty Tech Logo" className="h-10 w-auto object-contain" />
+            <img src={`${import.meta.env.BASE_URL}images/logo.png`} alt="Zhao Beauty Tech Logo" className="h-10 w-auto object-contain" />
             <div className="hidden sm:block">
               <span className="font-heading font-bold text-lg text-text-primary tracking-tight">
                 Zhao Beauty Tech

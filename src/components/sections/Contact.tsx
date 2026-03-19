@@ -81,7 +81,7 @@ export function Contact() {
 
   const openWhatsApp = () => {
     const message = 'Hi, I am interested in your products. Can you provide more information?';
-    const whatsappUrl = `https://wa.me/923001234567?text=${encodeURIComponent(message)}`;
+    const whatsappUrl = `https://wa.me/923119604749?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, '_blank');
   };
 
@@ -119,8 +119,8 @@ export function Contact() {
                   <Phone className="w-5 h-5 text-cyan" />
                 </div>
                 <div>
-                  <h4 className="font-semibold text-white mb-1">Phone</h4>
-                  <p className="text-gray-400">+92-300-1234567</p>
+                  <h4 className="font-semibold text-white mb-1">Phone / WhatsApp</h4>
+                  <p className="text-gray-400">+92 311 9604749</p>
                   <p className="text-gray-500 text-sm">Mon-Sat, 9AM-6PM</p>
                 </div>
               </div>
@@ -131,7 +131,7 @@ export function Contact() {
                 </div>
                 <div>
                   <h4 className="font-semibold text-white mb-1">Email</h4>
-                  <p className="text-gray-400">hello@zhaobeautytech.com</p>
+                  <p className="text-gray-400">zhaobeautytech@gmail.com</p>
                   <p className="text-gray-500 text-sm">We reply within 24 hours</p>
                 </div>
               </div>
@@ -201,7 +201,7 @@ export function Contact() {
                   <label className="block text-sm text-gray-400 mb-2">Phone</label>
                   <Input
                     type="tel"
-                    placeholder="+92-300-1234567"
+                    placeholder="+92 311 9604749"
                     value={formData.phone}
                     onChange={(e) =>
                       setFormData({ ...formData, phone: e.target.value })

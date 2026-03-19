@@ -1,4 +1,18 @@
-import { Instagram, Facebook, Youtube, Mail, Phone, MapPin } from 'lucide-react';
+import { Instagram, Facebook, Mail, Phone, MapPin, MessageCircle } from 'lucide-react';
+
+const TikTokIcon = (props: any) => (
+  <svg
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    {...props}
+  >
+    <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5" />
+  </svg>
+);
 
 const footerLinks = {
   products: [
@@ -25,9 +39,10 @@ const footerLinks = {
 };
 
 const socialLinks = [
-  { icon: Instagram, href: '#', label: 'Instagram' },
-  { icon: Facebook, href: '#', label: 'Facebook' },
-  { icon: Youtube, href: '#', label: 'YouTube' },
+  { icon: TikTokIcon, href: 'https://www.tiktok.com/@zhao.beauty.tech', label: 'TikTok' },
+  { icon: Instagram, href: 'https://www.instagram.com/zhaobeauty.tech', label: 'Instagram' },
+  { icon: Facebook, href: 'https://www.facebook.com/share/17VQ3dr636/', label: 'Facebook' },
+  { icon: MessageCircle, href: 'https://wa.me/923119604749', label: 'WhatsApp' },
 ];
 
 export function Footer() {
@@ -48,9 +63,7 @@ export function Footer() {
           {/* Brand Column */}
           <div className="lg:col-span-2">
             <div className="flex items-center gap-3 mb-6">
-              <div className="w-12 h-12 rounded-full bg-gradient-to-br from-cyan to-cyan-light flex items-center justify-center">
-                <span className="text-white font-heading font-bold text-xl">Z</span>
-              </div>
+              <img src={`${import.meta.env.BASE_URL}images/logo.png`} alt="Zhao Beauty Tech Logo" className="h-12 w-auto object-contain" />
               <span className="font-heading font-bold text-xl text-white">
                 Zhao Beauty Tech
               </span>
@@ -64,11 +77,11 @@ export function Footer() {
             <div className="space-y-3">
               <div className="flex items-center gap-3 text-gray-400">
                 <Phone className="w-4 h-4 text-cyan" />
-                <span className="text-sm">+92-300-1234567</span>
+                <span className="text-sm">+92 311 9604749</span>
               </div>
               <div className="flex items-center gap-3 text-gray-400">
                 <Mail className="w-4 h-4 text-cyan" />
-                <span className="text-sm">hello@zhaobeautytech.com</span>
+                <span className="text-sm">zhaobeautytech@gmail.com</span>
               </div>
               <div className="flex items-center gap-3 text-gray-400">
                 <MapPin className="w-4 h-4 text-cyan" />

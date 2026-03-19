@@ -93,7 +93,7 @@ export function About() {
               </p>
               <p>
                 From microneedling devices to laser systems, HIFU machines to
-                treatment serums—we carefully curate our product range to ensure
+                treatment serums we carefully curate our product range to ensure
                 only the best makes it to your clinic.
               </p>
             </div>
@@ -125,7 +125,7 @@ export function About() {
           <div className="relative">
             <div className="relative rounded-3xl overflow-hidden shadow-glass-lg">
               <img
-                src="/images/kit-contents.jpg"
+                src={`${import.meta.env.BASE_URL}images/kit-contents.jpg`}
                 alt="Professional Aesthetic Kit"
                 className="w-full h-[400px] lg:h-[500px] object-cover"
               />
@@ -135,7 +135,7 @@ export function About() {
                   "Quality you can trust, service you can rely on"
                 </p>
                 <p className="text-sm text-text-secondary">
-                  — Zhao Beauty Tech Team
+                     Zhao Beauty Tech Team
                 </p>
               </div>
             </div>
