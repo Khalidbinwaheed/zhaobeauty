@@ -319,7 +319,7 @@ export const products: Product[] = [
     category: 'serums',
     price: 3000,
     originalPrice: 4000,
-    image: import.meta.env.BASE_URL + 'images/product-gold-serum.png',
+    image: import.meta.env.BASE_URL + 'images/product-gold-serum.jpg',
     rating: 4.9,
     description: "100ml 24k Gold Hyaluronic Acid Nicotinamide Face Serum Anti-Aging Facial Lifting Collagen Essence Skin Care Whitening Serum.\n\nHigh concentration of skin activating essence allows all levels of nutrients to pass through the skin. It is necessary to replenish energy, resist aging skin, tighten the skin, reduce fine lines, increase skin moisture, and solve problems such as rough and dull skin. It is easy to absorb when used in combine with cream. Collagen, skin regeneration, plum firm.",
     features: [
