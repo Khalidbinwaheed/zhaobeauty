@@ -1,12 +1,15 @@
-import { useEffect } from 'react';
+import { useEffect, Suspense, lazy } from 'react';
 import { Header } from '@/components/Header';
 import { Hero } from '@/components/sections/Hero';
 import { Categories } from '@/components/sections/Categories';
-import { BestSellers } from '@/components/sections/BestSellers';
-import { About } from '@/components/sections/About';
-import { WhyChooseUs } from '@/components/sections/WhyChooseUs';
-import { Contact } from '@/components/sections/Contact';
-import { Footer } from '@/components/Footer';
+
+// Lazy loaded sections for faster initial load
+const BestSellers = lazy(() => import('@/components/sections/BestSellers').then(module => ({ default: module.BestSellers })));
+const About = lazy(() => import('@/components/sections/About').then(module => ({ default: module.About })));
+const WhyChooseUs = lazy(() => import('@/components/sections/WhyChooseUs').then(module => ({ default: module.WhyChooseUs })));
+const Contact = lazy(() => import('@/components/sections/Contact').then(module => ({ default: module.Contact })));
+const Footer = lazy(() => import('@/components/Footer').then(module => ({ default: module.Footer })));
+
 import { Toaster } from '@/components/ui/sonner';
 import './App.css';
 
@@ -32,14 +35,18 @@ function App() {
       <main className="relative">
         <Hero />
         <Categories />
-        <BestSellers />
-        <About />
-        <WhyChooseUs />
-        <Contact />
+        <Suspense fallback={<div className="h-32 flex items-center justify-center text-gray-400">Loading section...</div>}>
+          <BestSellers />
+          <About />
+          <WhyChooseUs />
+          <Contact />
+        </Suspense>
       </main>
       
       {/* Footer */}
-      <Footer />
+      <Suspense fallback={null}>
+        <Footer />
+      </Suspense>
       
       {/* Toast notifications */}
       <Toaster 

@@ -233,7 +233,10 @@ export function BestSellers() {
               className="group bg-white rounded-3xl overflow-hidden shadow-card transition-all duration-500 hover:shadow-glass-lg hover:-translate-y-2"
             >
               {/* Image */}
-              <div className="relative h-52 sm:h-56 overflow-hidden bg-gray-50">
+              <div 
+                className="relative h-52 sm:h-56 overflow-hidden bg-gray-50 cursor-pointer"
+                onClick={() => openProductDialog(product)}
+              >
                 <img
                   src={product.image}
                   alt={product.name}
@@ -348,7 +351,7 @@ export function BestSellers() {
               </div>
 
               {/* Content Section - Scrollable */}
-              <div className="w-full md:w-[55%] lg:w-[60%] flex flex-col md:overflow-y-auto custom-scrollbar relative">
+              <div className="w-full md:w-[55%] lg:w-[60%] flex flex-col md:overflow-y-auto custom-scrollbar relative min-h-0">
                 <div className="p-6 md:p-8 lg:p-12 flex-1">
                   <DialogHeader className="mb-4 text-left">
                     <DialogTitle className="font-heading font-bold text-2xl md:text-3xl text-text-primary leading-tight">

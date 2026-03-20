@@ -163,9 +163,21 @@ export function Footer() {
       <div className="border-t border-white/10">
         <div className="w-full px-4 sm:px-6 lg:px-12 xl:px-20 py-6">
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
-            <p className="text-gray-500 text-sm text-center sm:text-left">
-              © {new Date().getFullYear()} Zhao Beauty Tech. All rights reserved.
-            </p>
+            <div className="flex flex-col items-center sm:items-start gap-1">
+              <p className="text-gray-500 text-sm text-center sm:text-left">
+                © {new Date().getFullYear()} Zhao Beauty Tech. All rights reserved.
+              </p>
+              <p className="text-gray-500 text-xs text-center sm:text-left">
+                Developed by{' '}
+                <a href="https://codecraftpk.com/" target="_blank" rel="noreferrer" className="text-cyan hover:underline font-medium">
+                  Code Cryptical IT Innovators
+                </a>
+                {' '} | Developer:{' '}
+                <a href="https://khalidbinwaheed.github.io/ikhalidbinwaheed/" target="_blank" rel="noreferrer" className="text-cyan hover:underline font-medium">
+                  Khalid Bin Waheed
+                </a>
+              </p>
+            </div>
             
             {/* Social Links */}
             <div className="flex items-center gap-4">
