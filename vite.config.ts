@@ -17,11 +17,11 @@ export default defineConfig({
       output: {
         manualChunks(id) {
           if (id.includes('node_modules')) {
-            if (id.includes('gsap')) return 'gsap';
-            if (id.includes('lucide-react')) return 'lucide';
-            if (id.includes('@radix-ui')) return 'radix';
-            if (id.includes('react') || id.includes('react-dom') || id.includes('react-router')) return 'vendor';
-            return 'vendor-other';
+            if (id.includes('gsap')) return 'vendor-gsap';
+            if (id.includes('lucide')) return 'vendor-lucide';
+            if (id.includes('@radix-ui')) return 'vendor-radix';
+            // Consolidate all other node_modules into a single 'vendor' chunk
+            return 'vendor';
           }
         }
       }
