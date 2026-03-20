@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { Star, ShoppingBag, Check } from 'lucide-react';
+import { Star, ShoppingBag, Check, Search } from 'lucide-react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { products, categories } from '@/data/products';
@@ -25,6 +25,7 @@ export function BestSellers() {
   
   const { toast } = useToast();
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
+  const [searchQuery, setSearchQuery] = useState<string>('');
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
 
@@ -40,10 +41,13 @@ export function BestSellers() {
     notes: ''
   });
 
-  const filteredProducts =
-    selectedCategory === 'all'
-      ? products
-      : products.filter((p) => p.category === selectedCategory);
+  const filteredProducts = products.filter((p) => {
+    const matchesCategory = selectedCategory === 'all' || p.category === selectedCategory;
+    const matchesSearch = 
+      p.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
+      p.description.toLowerCase().includes(searchQuery.toLowerCase());
+    return matchesCategory && matchesSearch;
+  });
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -102,7 +106,19 @@ export function BestSellers() {
       }
     }, sectionRef);
 
-    return () => ctx.revert();
+    // Listen to custom category changes triggered from outside (e.g., Categories.tsx)
+    const handleCategoryChange = (e: Event) => {
+      const customEvent = e as CustomEvent<string>;
+      setSelectedCategory(customEvent.detail);
+      // Optional: Reset string search when clicking a category pill from outside
+      setSearchQuery('');
+    };
+    window.addEventListener('changeCategory', handleCategoryChange);
+
+    return () => {
+      ctx.revert();
+      window.removeEventListener('changeCategory', handleCategoryChange);
+    };
   }, [filteredProducts]);
 
   const openProductDialog = (product: Product) => {
@@ -192,34 +208,49 @@ export function BestSellers() {
           </p>
         </div>
 
-        {/* Category Filters */}
+        {/* Search and Category Filters */}
         <div
           ref={filtersRef}
-          className="flex flex-wrap justify-center gap-2 sm:gap-3 mb-12"
+          className="flex flex-col items-center gap-6 mb-12"
         >
-          <button
-            onClick={() => setSelectedCategory('all')}
-            className={`px-4 sm:px-6 py-2.5 rounded-full text-sm font-medium transition-all duration-300 ${
-              selectedCategory === 'all'
-                ? 'bg-cyan text-white shadow-lg shadow-cyan/25'
-                : 'bg-white text-text-secondary hover:bg-cyan/10 hover:text-cyan'
-            }`}
-          >
-            All
-          </button>
-          {categories.map((cat) => (
+          {/* Search Box */}
+          <div className="relative w-full max-w-md opacity-0 animate-fade-in" style={{ animationFillMode: 'forwards', animationDelay: '0.2s' }}>
+            <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+            <Input
+              type="text"
+              placeholder="Search products by name or description..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="w-full pl-12 pr-4 h-12 bg-white border-white/40 shadow-glass rounded-full text-text-primary focus:ring-cyan focus:border-cyan transition-all"
+            />
+          </div>
+
+          {/* Category Pills */}
+          <div className="flex flex-wrap justify-center gap-2 sm:gap-3">
             <button
-              key={cat.id}
-              onClick={() => setSelectedCategory(cat.id)}
+              onClick={() => { setSelectedCategory('all'); setSearchQuery(''); }}
               className={`px-4 sm:px-6 py-2.5 rounded-full text-sm font-medium transition-all duration-300 ${
-                selectedCategory === cat.id
+                selectedCategory === 'all'
                   ? 'bg-cyan text-white shadow-lg shadow-cyan/25'
                   : 'bg-white text-text-secondary hover:bg-cyan/10 hover:text-cyan'
               }`}
             >
-              {cat.name.split(' ')[0]}
+              All
             </button>
-          ))}
+            {categories.map((cat) => (
+              <button
+                key={cat.id}
+                onClick={() => { setSelectedCategory(cat.id); setSearchQuery(''); }}
+                className={`px-4 sm:px-6 py-2.5 rounded-full text-sm font-medium transition-all duration-300 ${
+                  selectedCategory === cat.id
+                    ? 'bg-cyan text-white shadow-lg shadow-cyan/25'
+                    : 'bg-white text-text-secondary hover:bg-cyan/10 hover:text-cyan'
+                }`}
+              >
+                {cat.name.split(' ')[0]}
+              </button>
+            ))}
+          </div>
         </div>
 
         {/* Products Grid */}
