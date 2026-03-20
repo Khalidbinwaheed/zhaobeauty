@@ -10,6 +10,9 @@ import {
   DialogTitle,
 } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
+import { useToast } from '@/hooks/use-toast';
 import type { Product } from '@/types';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -20,9 +23,22 @@ export function BestSellers() {
   const filtersRef = useRef<HTMLDivElement>(null);
   const gridRef = useRef<HTMLDivElement>(null);
   
+  const { toast } = useToast();
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
+
+  // Order Form State
+  const [isOrderDialogOpen, setIsOrderDialogOpen] = useState(false);
+  const [orderProduct, setOrderProduct] = useState<Product | null>(null);
+  const [isSubmittingOrder, setIsSubmittingOrder] = useState(false);
+  const [orderFormData, setOrderFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    address: '',
+    notes: ''
+  });
 
   const filteredProducts =
     selectedCategory === 'all'
@@ -94,10 +110,64 @@ export function BestSellers() {
     setIsDialogOpen(true);
   };
 
-  const handleWhatsAppOrder = (product: Product) => {
-    const message = `Hi, I want to order ${product.name} (Rs ${product.price.toLocaleString()})`;
-    const whatsappUrl = `https://wa.me/923001234567?text=${encodeURIComponent(message)}`;
-    window.open(whatsappUrl, '_blank');
+  const openOrderDialog = (product: Product) => {
+    setOrderProduct(product);
+    setIsOrderDialogOpen(true);
+  };
+
+  const submitOrder = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!orderProduct) return;
+    setIsSubmittingOrder(true);
+
+    try {
+      const accessKey = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY;
+      if (!accessKey || accessKey === 'YOUR_ACCESS_KEY_HERE') {
+        throw new Error('Please configure VITE_WEB3FORMS_ACCESS_KEY in your .env file');
+      }
+
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+        body: JSON.stringify({
+          access_key: accessKey,
+          subject: `New Order: ${orderProduct.name}`,
+          from_name: orderFormData.name,
+          replyto: orderFormData.email,
+          'Product': orderProduct.name,
+          'Price': formatPrice(orderProduct.price),
+          ...orderFormData,
+        }),
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        toast({
+          title: 'Opening WhatsApp',
+          description: 'Your order is ready to be sent securely on WhatsApp!',
+        });
+        
+        const message = `*New Order: ${orderProduct.name}*\n*Price:* ${formatPrice(orderProduct.price)}\n\n*Customer Details:*\n*Name:* ${orderFormData.name}\n*Phone:* ${orderFormData.phone}\n*Email:* ${orderFormData.email}\n*Address:* ${orderFormData.address}\n\n*Notes:* ${orderFormData.notes || 'None'}`;
+        const whatsappUrl = `https://wa.me/923119604749?text=${encodeURIComponent(message)}`;
+        window.open(whatsappUrl, '_blank');
+
+        setIsOrderDialogOpen(false);
+        setOrderFormData({ name: '', email: '', phone: '', address: '', notes: '' });
+      } else {
+        throw new Error(result.message || 'Something went wrong');
+      }
+    } catch (error) {
+      toast({
+        title: 'Order Processing Failed',
+        description: error instanceof Error ? error.message : 'Failed to process order. Please try again.',
+      });
+    } finally {
+      setIsSubmittingOrder(false);
+    }
   };
 
   const formatPrice = (price: number) => {
@@ -230,7 +300,7 @@ export function BestSellers() {
 
                 {/* CTA */}
                 <button
-                  onClick={() => handleWhatsAppOrder(product)}
+                  onClick={() => openOrderDialog(product)}
                   className="w-full py-3 bg-[#25D366] text-white rounded-xl font-medium text-sm flex items-center justify-center gap-2 hover:bg-[#128C7E] transition-all duration-300 hover:-translate-y-0.5"
                 >
                   <ShoppingBag className="w-4 h-4" />
@@ -373,7 +443,7 @@ export function BestSellers() {
                 {/* CTA - Fixed to bottom of scroll area */}
                 <div className="sticky bottom-0 p-6 md:px-8 md:py-6 mt-auto bg-white/95 backdrop-blur-md border-t border-gray-100/80 z-20 w-full shadow-[0_-10px_40px_-15px_rgba(0,0,0,0.1)]">
                   <Button
-                    onClick={() => handleWhatsAppOrder(selectedProduct)}
+                    onClick={() => openOrderDialog(selectedProduct)}
                     className="w-full py-6 md:py-7 bg-[#25D366] hover:bg-[#128C7E] text-white rounded-2xl font-bold text-base md:text-lg flex items-center justify-center gap-3 transition-all duration-300 shadow-xl shadow-[#25D366]/20 hover:shadow-[#128C7E]/30 hover:-translate-y-1"
                   >
                     <ShoppingBag className="w-6 h-6 mb-0.5" />
@@ -383,6 +453,96 @@ export function BestSellers() {
               </div>
             </div>
           )}
+        </DialogContent>
+      </Dialog>
+
+      {/* Order Dialog */}
+      <Dialog open={isOrderDialogOpen} onOpenChange={setIsOrderDialogOpen}>
+        <DialogContent className="w-[95vw] max-w-xl bg-white rounded-3xl p-6 sm:p-8 custom-scrollbar">
+          <DialogHeader className="mb-4 text-left">
+            <DialogTitle className="font-heading font-bold text-2xl text-text-primary">
+              Complete Your Order
+            </DialogTitle>
+            <p className="text-text-secondary text-sm mt-1">
+              Ordering: <span className="text-cyan font-bold">{orderProduct?.name}</span>
+            </p>
+          </DialogHeader>
+
+          <form onSubmit={submitOrder} className="space-y-4 text-left">
+            <div>
+              <label className="block text-sm font-medium text-text-secondary mb-1.5">Full Name *</label>
+              <Input
+                type="text"
+                required
+                value={orderFormData.name}
+                onChange={(e) => setOrderFormData({ ...orderFormData, name: e.target.value })}
+                className="bg-gray-50 border-gray-200 text-text-primary rounded-xl h-11"
+                placeholder="John Doe"
+              />
+            </div>
+            
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label className="block text-sm font-medium text-text-secondary mb-1.5">Phone Number *</label>
+                <Input
+                  type="tel"
+                  required
+                  value={orderFormData.phone}
+                  onChange={(e) => setOrderFormData({ ...orderFormData, phone: e.target.value })}
+                  className="bg-gray-50 border-gray-200 text-text-primary rounded-xl h-11"
+                  placeholder="+92 311 9604749"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-text-secondary mb-1.5">Email *</label>
+                <Input
+                  type="email"
+                  required
+                  value={orderFormData.email}
+                  onChange={(e) => setOrderFormData({ ...orderFormData, email: e.target.value })}
+                  className="bg-gray-50 border-gray-200 text-text-primary rounded-xl h-11"
+                  placeholder="john@example.com"
+                />
+              </div>
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-text-secondary mb-1.5">Full Delivery Address *</label>
+              <Textarea
+                required
+                value={orderFormData.address}
+                onChange={(e) => setOrderFormData({ ...orderFormData, address: e.target.value })}
+                className="bg-gray-50 border-gray-200 text-text-primary rounded-xl min-h-[80px] resize-none"
+                placeholder="House, Street, Area, City"
+              />
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-text-secondary mb-1.5">Order Notes (Optional)</label>
+              <Input
+                type="text"
+                value={orderFormData.notes}
+                onChange={(e) => setOrderFormData({ ...orderFormData, notes: e.target.value })}
+                className="bg-gray-50 border-gray-200 text-text-primary rounded-xl h-11"
+                placeholder="Any special instructions?"
+              />
+            </div>
+
+            <Button
+              type="submit"
+              disabled={isSubmittingOrder}
+              className="w-full mt-2 py-6 bg-[#25D366] hover:bg-[#128C7E] text-white rounded-xl font-bold text-base flex items-center justify-center gap-2 transition-all duration-300 disabled:opacity-70 disabled:cursor-not-allowed"
+            >
+              {isSubmittingOrder ? (
+                <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+              ) : (
+                <>
+                  <ShoppingBag className="w-5 h-5" />
+                  Confirm & Order on WhatsApp
+                </>
+              )}
+            </Button>
+          </form>
         </DialogContent>
       </Dialog>
     </section>

@@ -21,6 +21,7 @@ export function Contact() {
     phone: '',
     message: '',
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -61,21 +62,72 @@ export function Contact() {
     return () => ctx.revert();
   }, []);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
-    // Show success toast
-    toast({
-      title: 'Message Sent!',
-      description: 'We will get back to you within 24 hours.',
-    });
+    setIsSubmitting(true);
 
-    // Reset form
-    setFormData({
-      name: '',
-      email: '',
-      phone: '',
-      message: '',
+    try {
+      const accessKey = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY;
+      if (!accessKey || accessKey === 'YOUR_ACCESS_KEY_HERE') {
+        throw new Error('Please configure VITE_WEB3FORMS_ACCESS_KEY in your .env file');
+      }
+
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+        body: JSON.stringify({
+          access_key: accessKey,
+          subject: 'New Contact Form Submission - ZHAO Beauty Tech',
+          from_name: formData.name || 'Website Visitor',
+          replyto: formData.email, // Enables Web3Forms auto-reply if Pro is active
+          ...formData,
+        }),
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        toast({
+          title: 'Message Sent Successfully!',
+          description: 'Thank you for reaching out. We will get back to you within 24 hours.',
+        });
+        
+        setFormData({
+          name: '',
+          email: '',
+          phone: '',
+          message: '',
+        });
+      } else {
+        throw new Error(result.message || 'Something went wrong');
+      }
+    } catch (error) {
+      toast({
+        title: 'Submission Failed',
+        description: error instanceof Error ? error.message : 'Failed to send message. Please try again or use WhatsApp.',
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  const handleWhatsApp = () => {
+    if (!formData.message && !formData.name) {
+      const message = 'Hi, I am interested in your products. Can you provide more information?';
+      window.open(`https://wa.me/923119604749?text=${encodeURIComponent(message)}`, '_blank');
+      return;
+    }
+    
+    // Format structured message matching form
+    const message = `*New Inquiry from Website*\n\n*Name:* ${formData.name || 'N/A'}\n*Email:* ${formData.email || 'N/A'}\n*Phone:* ${formData.phone || 'N/A'}\n\n*Message:*\n${formData.message}`;
+    window.open(`https://wa.me/923119604749?text=${encodeURIComponent(message)}`, '_blank');
+    
+    toast({
+      title: 'Opening WhatsApp...',
+      description: 'You can now send your message directly to our WhatsApp.',
     });
   };
 
@@ -224,13 +276,31 @@ export function Contact() {
                 />
               </div>
 
-              <Button
-                type="submit"
-                className="w-full py-4 bg-cyan hover:bg-cyan-dark text-white rounded-xl font-medium flex items-center justify-center gap-2 transition-all duration-300"
-              >
-                <Send className="w-4 h-4" />
-                Send Message
-              </Button>
+              <div className="flex flex-col sm:flex-row gap-4 pt-2">
+                <Button
+                  type="button"
+                  onClick={handleWhatsApp}
+                  className="flex-1 py-4 bg-[#25D366] hover:bg-[#128C7E] text-white rounded-xl font-medium flex items-center justify-center gap-2 transition-all duration-300"
+                >
+                  <MessageCircle className="w-5 h-5" />
+                  WhatsApp
+                </Button>
+                
+                <Button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="flex-1 py-4 bg-cyan hover:bg-cyan-dark text-white rounded-xl font-medium flex items-center justify-center gap-2 transition-all duration-300 disabled:opacity-70 disabled:cursor-not-allowed"
+                >
+                  {isSubmitting ? (
+                    <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                  ) : (
+                    <>
+                      <Send className="w-4 h-4" />
+                      Email
+                    </>
+                  )}
+                </Button>
+              </div>
             </div>
           </form>
         </div>

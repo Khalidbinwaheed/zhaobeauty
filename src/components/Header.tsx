@@ -86,7 +86,7 @@ export function Header() {
           <div className="flex items-center gap-3">
             {/* WhatsApp Button - Desktop */}
             <a
-              href="https://wa.me/923001234567?text=Hi,%20I%20want%20to%20request%20a%20quote"
+              href="https://wa.me/923119604749?text=Hi,%20I%20want%20to%20request%20a%20quote"
               target="_blank"
               rel="noopener noreferrer"
               className="hidden md:flex items-center gap-2 px-5 py-2.5 bg-cyan text-white rounded-full text-sm font-medium hover:bg-cyan-dark transition-all duration-300 hover:-translate-y-0.5"
@@ -148,7 +148,7 @@ export function Header() {
                   {/* Mobile CTA */}
                   <div className="mt-auto p-6 border-t border-gray-100">
                     <a
-                      href="https://wa.me/923001234567?text=Hi,%20I%20want%20to%20request%20a%20quote"
+                      href="https://wa.me/923119604749?text=Hi,%20I%20want%20to%20request%20a%20quote"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="flex items-center justify-center gap-2 w-full py-4 bg-[#25D366] text-white rounded-full font-medium hover:bg-[#128C7E] transition-all duration-300"
