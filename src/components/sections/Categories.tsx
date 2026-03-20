@@ -54,7 +54,11 @@ export function Categories() {
     return () => ctx.revert();
   }, []);
 
-  const scrollToProducts = (_categoryId: string) => {
+  const scrollToProducts = (categoryId: string) => {
+    // 1. Dispatch custom event for BestSellers to pick up the new category
+    window.dispatchEvent(new CustomEvent('changeCategory', { detail: categoryId }));
+    
+    // 2. Smooth scroll down to the section
     const element = document.querySelector('#best-sellers');
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
